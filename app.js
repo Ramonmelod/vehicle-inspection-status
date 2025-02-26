@@ -10,10 +10,8 @@ const queryObject = "SELECT * FROM usuarios;";
 
 app.use(express.json());
 
-// Importa as rotas definidas no apiRouter
-app.use("/api", apiRouter); // Aqui, todas as rotas do apiRouter serão acessíveis através do prefixo "/api"
+app.use("/api", apiRouter);
 
-// Rota padrão
 app.get("/", async (req, res) => {
   const result = await database(queryObject);
   res.type("text/plain");
