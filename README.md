@@ -28,6 +28,26 @@ curl -s http://localhost:3000/ | python3 -m json.tool
 
 ```
 
+## Get started
+
+- First run the npm install to download all the depedencies:
+
+```sh
+npm install
+```
+
+- Run the command below to start the container:
+
+```sh
+npm run services:up
+```
+
+- The run the command below to start the the server:
+
+```sh
+npm run dev
+```
+
 ## Direct access to the database container
 
 - In ubuntu you can access the postgres database container using the comand:
