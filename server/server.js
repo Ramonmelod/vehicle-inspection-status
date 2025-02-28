@@ -1,6 +1,6 @@
 const express = require("express");
 const { Router } = require("express");
-const { database } = require("./infra/database.js");
+const { database } = require("../infra/database.js");
 const app = express();
 const apiRouter = Router();
 const porta = 3000;
