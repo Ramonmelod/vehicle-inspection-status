@@ -7,6 +7,10 @@ services:
       - MSSQL_SA_PASSWORD=Local_password123
     ports:
       - "1400:1433"
+    volumes:
+      - ./init.sql:/init.sql # copy the init.sql to the container
+    # The command flag overrides the container's default command, so it is necessary to specify that SQL Server should be initialized
+    command: /bin/bash -c "/opt/mssql/bin/sqlservr & until tail -f /var/opt/mssql/log/errorlog | grep -q 'SQL Server is now ready for client connections'; do echo 'Aguardando SQL Server...'; sleep 1; done; /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'Local_password123' -i /init.sql -N -C"
     restart: always
     networks:
       - mssql_network
