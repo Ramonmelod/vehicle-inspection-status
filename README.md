@@ -27,13 +27,21 @@ curl -s http://localhost:3000/ | python3 -m json.tool
 
 ```
 
-## Direct acces to the database container
+## Direct access to the database container
 
 - In ubuntu you can access the postgres database container using the comand:
 
 ```sh
   sqlcmd -S localhost,1400 -U sa -P 'Local_password123'
 
+```
+
+obs.: For using the sqlcm you need to install the `mssql-tools`
+
+- You can access the docker container withe the command below:
+
+```sh
+docker exec -it mssql_server bin/bash
 ```
 
 ## Author
