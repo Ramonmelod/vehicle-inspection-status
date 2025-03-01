@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 test("teste status response é 200", async () => {
   const response = await fetch("http://localhost:3000/");
 
