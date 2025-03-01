@@ -6,7 +6,7 @@ const apiRouter = Router();
 const porta = 3000;
 const localHost = "localhost";
 
-const queryObject = "SELECT * FROM usuarios;";
+const queryObject = "SELECT * FROM dbo.serviconumerico;";
 
 app.use(express.json());
 
