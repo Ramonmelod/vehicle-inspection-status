@@ -10,16 +10,16 @@ const queryObject = "SELECT TOP 4 * FROM dbo.serviconumerico"; // "SELECT * FROM
 
 app.use(express.json());
 
-app.use("/api", apiRouter);
+app.use("/api/v1/os_status", apiRouter);
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+  res.status(200).send("Bem-vindo à API!");
+});
+
+apiRouter.get("/", async (req, res) => {
   const result = await database(queryObject);
   res.type("text/plain");
   res.status(200).send(result); //result.recordsets
-});
-
-apiRouter.get("/", (req, res) => {
-  res.status(200).send("Bem-vindo à API!");
 });
 
 app.listen(porta, localHost, () => {

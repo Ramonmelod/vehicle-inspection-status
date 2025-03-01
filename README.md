@@ -21,9 +21,9 @@
 
 **Requisição**
 
-`/`
+`/api/v1/os_status`
 
-```
+```sh
 curl -s http://localhost:3000/ | python3 -m json.tool --no-ensure-ascii
 
 ```
