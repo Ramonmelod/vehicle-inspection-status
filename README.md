@@ -24,7 +24,7 @@
 `/`
 
 ```
-curl -s http://localhost:3000/ | python3 -m json.tool
+curl -s http://localhost:3000/ | python3 -m json.tool --no-ensure-ascii
 
 ```
 
