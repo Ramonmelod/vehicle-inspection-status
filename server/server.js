@@ -6,7 +6,7 @@ const apiRouter = Router();
 const porta = 3000;
 const localHost = "localhost";
 
-const queryObject = "SELECT * FROM dbo.serviconumerico;";
+const queryObject = "SELECT TOP 4 * FROM dbo.serviconumerico"; // "SELECT * FROM dbo.serviconumerico;";
 
 app.use(express.json());
 
@@ -15,7 +15,7 @@ app.use("/api", apiRouter);
 app.get("/", async (req, res) => {
   const result = await database(queryObject);
   res.type("text/plain");
-  res.status(200).send(result);
+  res.status(200).send(result); //result.recordsets
 });
 
 apiRouter.get("/", (req, res) => {

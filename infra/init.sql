@@ -72,6 +72,7 @@ VALUES
      'Autorização recusada', 104, '2025-01-04 11:00:00', 1, 'CLI004', 'CARACTER15', 'CARACTER16', '2025-01-04 12:00:00',
      'Revisão do sistema', 4, 8, 'Gases analisados', 'USR008', 'USR009', 'Ana Silva', '2025-01-04 13:00:00', 
      'Gerente', 4, 0);
+     
 GO
 
 
