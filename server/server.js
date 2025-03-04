@@ -1,13 +1,14 @@
 const express = require("express");
 const { Router } = require("express");
 const { database } = require("../infra/database.js");
+const cors = require("cors"); // cors add to enable crossed requisitions
 const app = express();
 const apiRouter = Router();
 const porta = 8080;
 const localHost = "localhost";
 
 const queryObject = "SELECT TOP 4 * FROM dbo.serviconumerico"; // "SELECT * FROM dbo.serviconumerico;";
-
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/os_status", apiRouter);
