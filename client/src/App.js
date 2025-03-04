@@ -1,5 +1,6 @@
 import React from "react";
 import Routes from "./routes";
+import useSWR from "swr";
 
 async function query() {
   const response = await fetch("http://localhost:8080/api/v1/os_status");
@@ -8,10 +9,12 @@ async function query() {
 }
 
 export default function App() {
-  console.log(query());
+  const response = useSWR("query", query);
+
   return (
     <>
       <Routes />
+      <pre>{JSON.stringify(response.data)}</pre>
     </>
   );
 }
