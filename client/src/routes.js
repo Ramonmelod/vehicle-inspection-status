@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Dashboard from "./Dashboard";
-import About from "./About";
+import Dashboard from "./pages/Dashboard";
+import About from "./pages/About";
 
 const AppRoutes = () => {
   return (

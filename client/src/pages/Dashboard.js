@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <>
       <h1>Seta Dashboard</h1>
-      <pre>{JSON.stringify(response.data)}</pre>
+      <pre>{JSON.stringify(response.data, null, 2)}</pre>
     </>
   );
 };
