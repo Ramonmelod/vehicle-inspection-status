@@ -1,4 +1,4 @@
-# vehicle-inspection-status 
+# vehicle-inspection-status
 
 <div>
 <img src="https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png" alt="express logo" width="100" height="auto">
@@ -24,7 +24,7 @@
 `/api/v1/os_status`
 
 ```sh
-curl -s http://localhost:3000/ | python3 -m json.tool --no-ensure-ascii
+curl -s http://localhost:8080/ | python3 -m json.tool --no-ensure-ascii
 
 ```
 
