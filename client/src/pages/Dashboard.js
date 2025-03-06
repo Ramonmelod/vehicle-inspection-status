@@ -18,23 +18,41 @@ const Dashboard = () => {
 
 function OsInformations() {
   const { data, isLoading } = useSWR("/api/v1/os_status", fetchApi); //endpoint access without localhost text allowed by proxy property in package json
-  let servicoNumeroText = "carregando...";
-  let openDate = "carregando...";
-  let licensePlate = "carregando...";
+  let serviceNumberText = "carregando...";
+  let licensePlateText = "carregando...";
+  let openDateText = "carregando...";
+
+  let finalizationText = "carregando...";
+  let csvNameText = "carregando...";
+  let status = "carregando...";
+
   if (!isLoading && data) {
-    servicoNumeroText = data.recordsets[0][0].ServicoNumero;
-    openDate = data.recordsets[0][0].AberturaDataHora;
-    licensePlate = data.recordsets[0][0].Placa;
+    openDateText = data.recordsets[0][0].aberturadatahora;
+    serviceNumberText = data.recordsets[0][0].serviconumero;
+    licensePlateText = data.recordsets[0][0].placa;
+
+    finalizationText = data.recordsets[0][0].csvemitidodatahora;
+    csvNameText = data.recordsets[0][0].TipoCsvNome;
+    status = data.recordsets[0][0].status;
   }
   return (
     <>
       <div>
-        Número Ordem de serviço: {JSON.stringify(servicoNumeroText, null, 2)}
+        Número Ordem de serviço: {JSON.stringify(serviceNumberText, null, 2)}
       </div>
-      <div>Data de abertura: {JSON.stringify(openDate, null, 2)}</div>
-      <div>Placa: {JSON.stringify(licensePlate, null, 2)}</div>
+      <div>Data de abertura: {JSON.stringify(openDateText, null, 2)}</div>
+      <div>Placa: {JSON.stringify(licensePlateText, null, 2)}</div>
+      <div>finalização: {JSON.stringify(finalizationText, null, 2)}</div>
+      <div>Escopo: {JSON.stringify(csvNameText, null, 2)}</div>
+      <div>Status: {JSON.stringify(status, null, 2)}</div>
     </>
   );
 }
 
 export default Dashboard;
+//os: serviconumero
+//placa
+//abertura:aberturadatahora
+//finalizacao:csvemitidodatahora
+//escopo:TipoCsvNome
+//status

@@ -10,7 +10,6 @@ const localHost = "localhost";
 const queryObject =
   "SELECT serviconumero, placa, aberturadatahora,csvemitidodatahora,TipoCsvNome,  status FROM serviconumerico;";
 app.use(cors());
-app.use(express.json());
 
 app.use("/api/v1/os_status", apiRouter);
 
