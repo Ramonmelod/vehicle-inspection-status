@@ -7,7 +7,8 @@ const apiRouter = Router();
 const porta = 8080;
 const localHost = "localhost";
 
-const queryObject = "SELECT TOP 4 * FROM dbo.serviconumerico"; // "SELECT * FROM dbo.serviconumerico;";
+const queryObject =
+  "SELECT serviconumero, placa, aberturadatahora,csvemitidodatahora,TipoCsvNome,  status FROM serviconumerico;";
 app.use(cors());
 app.use(express.json());
 

@@ -4,81 +4,87 @@ BEGIN
 END;
 GO  
 
-
 USE vehicle_inspection_status;
 GO 
-
 
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='serviconumerico' AND xtype='U')
 BEGIN
     CREATE TABLE dbo.serviconumerico (
         Id INT PRIMARY KEY,
-        TipoServico VARCHAR(30),
-        NotaFiscalId VARCHAR(50),
+        TipoServico VARCHAR(50),
+        NotaFiscalId INT,
+        ServicoNumero INT,
+        AberturaDataHora DATETIME,
+        DataLimiteRetorno DATETIME,
         Placa VARCHAR(10),
         Chassi VARCHAR(50),
+        ChassiRemarcado BIT,
+        ClienteId VARCHAR(50),
+        ProprietarioId VARCHAR(50),
         CondutorId VARCHAR(50),
         CaracteristicaAnteriorId VARCHAR(50),
         CaracteristicaAtualId VARCHAR(50),
-        AprovouDivergenciasUsuarioId VARCHAR(50),
-        AutorizacaoDescricao TEXT,
-        ServicoNumero INT,
-        AberturaDataHora DATETIME,
-        ChassiRemarcado BIT,
-        ClienteId VARCHAR(50),
         CaracteristicaSubstituidaId VARCHAR(50),
-        CaracteristicaCrvId VARCHAR(50),
+        CaracteristicaCrlvId VARCHAR(50),
+        AprovouDivergenciasBin BIT,
+        AprovouDivergenciasUsuarioId VARCHAR(50),
+        AprovouDivergenciasUsuarioNome VARCHAR(100),
         AprovouDivergenciasDataHora DATETIME,
         Observacoes TEXT,
+        TipoCsvId INT,
+        TipoCsvNome VARCHAR(50),
+        RequerAutorizacao BIT,
+        AutorizacaoNumero VARCHAR(50),
+        AutorizacaoDescricao TEXT,
+        AutorizacaoDataVencimento DATETIME,
         PortariaId INT,
         Prisma INT,
-        AnaliseGases VARCHAR(50),
+        AnaliseGases BIT,
+        Status INT,
+        IndicacaoId VARCHAR(50),
+        ValorServico DECIMAL(10,2),
+        EmitirNotaFiscalLaudos BIT,
         OrdemServicoEmitidoUsuarioId VARCHAR(50),
+        OrdemServicoEmitidoUsuarioNome VARCHAR(100),
+        OrdemServicoEmitidoDataHora DATETIME,
+        CsvEmitidoUsuarioId VARCHAR(50),
+        CsvEmitidoUsuarioNome VARCHAR(100),
+        CsvEmitidoDataHora DATETIME,
         SeloEmitidoUsuarioId VARCHAR(50),
-        LaudoEmitidoUsuarioNome TEXT,
+        SeloEmitidoUsuarioNome VARCHAR(100),
+        SeloEmitidoDataHora DATETIME,
+        CanceladoMotivo TEXT,
         CanceladoDataHora DATETIME,
-        CanceladoPor TEXT,
+        CanceladoPor VARCHAR(100),
+        TipoLaudoId INT,
+        TipoLaudoNome VARCHAR(50),
         SubGrupoId INT,
-        UtilizarFotoManualCentral BIT
+        UtilizarFotoManualCertificado BIT,
+        UtilizarFotoManualAntt BIT
     );
 END;
 GO
 
--- Inserção de 4 linhas fictícias na tabela 'serviconumerico'
+-- Inserção de 2 linhas fictícias na tabela 'serviconumerico'
 INSERT INTO dbo.serviconumerico (
-    Id, TipoServico, NotaFiscalId, Placa, Chassi, CondutorId, CaracteristicaAnteriorId, CaracteristicaAtualId,
-    AprovouDivergenciasUsuarioId, AutorizacaoDescricao, ServicoNumero, AberturaDataHora, ChassiRemarcado, ClienteId,
-    CaracteristicaSubstituidaId, CaracteristicaCrvId, AprovouDivergenciasDataHora, Observacoes, PortariaId, Prisma,
-    AnaliseGases, OrdemServicoEmitidoUsuarioId, SeloEmitidoUsuarioId, LaudoEmitidoUsuarioNome, CanceladoDataHora,
-    CanceladoPor, SubGrupoId, UtilizarFotoManualCentral
-)
+    Id, TipoServico, NotaFiscalId, ServicoNumero, AberturaDataHora, DataLimiteRetorno, Placa, Chassi, 
+    ChassiRemarcado, ClienteId, ProprietarioId, CondutorId, CaracteristicaAnteriorId, CaracteristicaAtualId, 
+    CaracteristicaSubstituidaId, CaracteristicaCrlvId, AprovouDivergenciasBin, AprovouDivergenciasUsuarioId, 
+    AprovouDivergenciasUsuarioNome, AprovouDivergenciasDataHora, Observacoes, TipoCsvId, TipoCsvNome, 
+    RequerAutorizacao, AutorizacaoNumero, AutorizacaoDescricao, AutorizacaoDataVencimento, PortariaId, Prisma, 
+    AnaliseGases, Status, IndicacaoId, ValorServico, EmitirNotaFiscalLaudos, OrdemServicoEmitidoUsuarioId, 
+    OrdemServicoEmitidoUsuarioNome, OrdemServicoEmitidoDataHora, CsvEmitidoUsuarioId, CsvEmitidoUsuarioNome, 
+    CsvEmitidoDataHora, SeloEmitidoUsuarioId, SeloEmitidoUsuarioNome, SeloEmitidoDataHora, CanceladoMotivo, 
+    CanceladoDataHora, CanceladoPor, TipoLaudoId, TipoLaudoNome, SubGrupoId, UtilizarFotoManualCertificado, 
+    UtilizarFotoManualAntt)
 VALUES 
-    (1, 'Reparo', 'NF123456', 'ABC1234', '1HGBH41JXMN109186', 'COND001', 'CARACTER1', 'CARACTER2', 'USR001', 
-     'Autorização concedida', 101, '2025-01-01 08:00:00', 0, 'CLI001', 'CARACTER3', 'CARACTER4', '2025-01-01 09:00:00',
-     'Observações iniciais', 1, 5, 'Gases analisados', 'USR002', 'USR003', 'João da Silva', '2025-01-01 10:00:00', 
-     'Administrador', 1, 1),
-
-    (2, 'Troca de Peças', 'NF123457', 'DEF5678', '2HGBH41JXMN109187', 'COND002', 'CARACTER5', 'CARACTER6', 'USR002', 
-     'Autorização pendente', 102, '2025-01-02 09:00:00', 1, 'CLI002', 'CARACTER7', 'CARACTER8', '2025-01-02 10:00:00',
-     'Observações complementares', 2, 6, 'Gases não analisados', 'USR004', 'USR005', 'Maria Oliveira', NULL, 
-     NULL, 2, 0),
-
-    (3, 'Inspeção', 'NF123458', 'GHI9101', '3HGBH41JXMN109188', 'COND003', 'CARACTER9', 'CARACTER10', 'USR003', 
-     'Autorização em análise', 103, '2025-01-03 10:00:00', 0, 'CLI003', 'CARACTER11', 'CARACTER12', '2025-01-03 11:00:00',
-     'Nenhuma observação', 3, 7, 'Gases não analisados', 'USR006', 'USR007', 'Carlos Pereira', NULL, 
-     NULL, 3, 1),
-
-    (4, 'Revisão', 'NF123459', 'JKL1122', '4HGBH41JXMN109189', 'COND004', 'CARACTER13', 'CARACTER14', 'USR004', 
-     'Autorização recusada', 104, '2025-01-04 11:00:00', 1, 'CLI004', 'CARACTER15', 'CARACTER16', '2025-01-04 12:00:00',
-     'Revisão do sistema', 4, 8, 'Gases analisados', 'USR008', 'USR009', 'Ana Silva', '2025-01-04 13:00:00', 
-     'Gerente', 4, 0);
-     
+    (16264, 'SR', 18527, 4280, '2025-03-05 10:03:43.547', '2025-04-04 23:59:59.000', 'ORR9A72', '8AJYY59G3D6508747', 
+     0, '2C7E91F7-9D51-4E8D-A5F8-CA79A0A44605', '284E27B9-ABAB-4448-A2F7-A659AA5C9837', '2C7E91F7-9D51-4E8D-A5F8-CA79A0A44605', 
+     NULL, NULL, NULL, NULL, 0, NULL, '', NULL, '', 0, '', 0, NULL, '', NULL, 21, 2, 0, 1, NULL, 0.01, 1, NULL, '', NULL, 
+     '5F06E303-93F0-4F9F-A8E2-C770A8E1D6C2', 'Administrador', '2025-03-05 12:15:29.273', NULL, '', NULL, '', NULL, '', 0, '', 0, 0, 0),
+    (16265, 'SR', 18528, 4281, '2025-03-06 11:15:30.123', '2025-04-06 23:59:59.000', 'XYZ1234', '9KLMY59G3D6508748', 
+     1, '3D8E91F7-8D51-4E8D-A5F8-CA79A0A44606', '394E27B9-ABAB-4448-A2F7-A659AA5C9838', '3D8E91F7-8D51-4E8D-A5F8-CA79A0A44606', 
+     NULL, NULL, NULL, NULL, 1, NULL, 'José da Silva', NULL, 'Sem observações', 1, 'Tipo X', 1, NULL, 'Descrição teste', NULL, 
+     22, 3, 1, 2, NULL, 50.00, 1, NULL, '', NULL, '6G07E303-93F0-4F9F-A8E2-C770A8E1D6D3', 'Gestor', '2025-03-06 13:20:45.456', 
+     NULL, '', NULL, 'Motivo cancelamento', NULL, 'Supervisor', 1, 'Laudo Y', 1, 1, 0);
 GO
-
-
---/bin/bash -c "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'Local_password123' -i init.sql -N -C"
---SELECT name FROM sys.databases;
---SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';
---docker exec -it mssql_server bin/bash
---use vehicle_inspection_status;
---/opt/mssql/bin/sqlservr
