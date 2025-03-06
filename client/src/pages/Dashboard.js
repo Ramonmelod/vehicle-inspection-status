@@ -27,13 +27,13 @@ function OsInformations() {
   let status = "carregando...";
 
   if (!isLoading && data) {
-    openDateText = data.recordsets[0][0].aberturadatahora;
-    serviceNumberText = data.recordsets[0][0].serviconumero;
-    licensePlateText = data.recordsets[0][0].placa;
+    openDateText = data[0].openDate;
+    serviceNumberText = data[0].serviceNumber;
+    licensePlateText = data[0].licensePlate;
 
-    finalizationText = data.recordsets[0][0].csvemitidodatahora;
-    csvNameText = data.recordsets[0][0].TipoCsvNome;
-    status = data.recordsets[0][0].status;
+    finalizationText = data[0].finalization;
+    csvNameText = data[0].csvName;
+    status = data[0].status;
   }
   return (
     <>

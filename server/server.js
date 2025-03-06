@@ -20,9 +20,23 @@ app.get("/", (req, res) => {
 apiRouter.get("/", async (req, res) => {
   const result = await database(queryObject);
   res.type("text/plain");
-  res.status(200).send(result); //result.recordsets
-});
 
+  let data = [];
+
+  for (datarow in result.recordset) {
+    data.push({
+      openDate: result.recordset[datarow].aberturadatahora,
+      serviceNumber: result.recordset[datarow].serviconumero,
+      licensePlate: result.recordset[datarow].placa,
+
+      finalization: result.recordset[datarow].csvemitidodatahora,
+      csvName: result.recordset[datarow].TipoCsvNome,
+      status: result.recordset[datarow].status,
+    });
+  }
+
+  res.status(200).send(data); //result.recordsets
+});
 app.listen(porta, localHost, () => {
   console.log("Servidor Rodando!");
 });
