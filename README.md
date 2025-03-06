@@ -24,7 +24,7 @@
 `/api/v1/os_status`
 
 ```sh
-curl -s http://localhost:8080/ | python3 -m json.tool --no-ensure-ascii
+curl -s http://localhost:8080/api/v1/os_status | python3 -m json.tool --no-ensure-ascii
 
 ```
 
