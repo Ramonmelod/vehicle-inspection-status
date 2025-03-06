@@ -7,6 +7,7 @@
 .os-table {
   position: relative;
   left: 10vw;
+  top: 10vh;
   width: 80vw;
 }
 
@@ -21,7 +22,7 @@
 }
 
 .os-table th {
-  background-color: #d47777;
+  background-color: #b21418;
   font-weight: bold;
   color: white;
 }
