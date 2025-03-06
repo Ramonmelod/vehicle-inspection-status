@@ -6,7 +6,8 @@
 }
 .os-table {
   position: relative;
-  left: 25%;
+  left: 10vw;
+  width: 80vw;
 }
 
 .os-table th,
