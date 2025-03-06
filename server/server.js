@@ -8,7 +8,7 @@ const porta = 8080;
 const localHost = "localhost";
 
 const queryObject =
-  "SELECT serviconumero, placa, aberturadatahora,csvemitidodatahora,TipoCsvNome,  status FROM serviconumerico;";
+  "SELECT serviconumero, placa, aberturadatahora,csvemitidodatahora,TipoCsvSerproNome,  status FROM serviconumerico;"; //"select * from dbo.serviconumerico;"
 app.use(cors());
 
 app.use("/api/v1/os_status", apiRouter);
@@ -30,12 +30,12 @@ apiRouter.get("/", async (req, res) => {
       licensePlate: result.recordset[datarow].placa,
 
       finalization: result.recordset[datarow].csvemitidodatahora,
-      csvName: result.recordset[datarow].TipoCsvNome,
+      TipoCsvSerproNome: result.recordset[datarow].TipoCsvSerproNome,
       status: result.recordset[datarow].status,
     });
   }
 
-  res.status(200).send(data); //result.recordsets
+  res.status(200).send(data);
 });
 app.listen(porta, localHost, () => {
   console.log("Servidor Rodando!");

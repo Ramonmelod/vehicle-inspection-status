@@ -32,7 +32,7 @@ function OsInformations() {
     licensePlateText = data[0].licensePlate;
 
     finalizationText = data[0].finalization;
-    csvNameText = data[0].csvName;
+    csvNameText = data[0].TipoCsvSerproNome;
     status = data[0].status;
   }
   return (
