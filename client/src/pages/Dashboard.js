@@ -1,5 +1,6 @@
 import React from "react";
 import useSWR from "swr";
+import "./Dashboard.css";
 
 async function fetchApi(key) {
   const response = await fetch(key);
@@ -10,7 +11,7 @@ async function fetchApi(key) {
 const Dashboard = () => {
   return (
     <>
-      <h1>Seta Dashboard</h1>
+      <h1 className="title">Seta Teresina</h1>
       <OsInformations />
     </>
   );
@@ -37,14 +38,32 @@ function OsInformations() {
   }
   return (
     <>
-      <div>
-        Número Ordem de serviço: {JSON.stringify(serviceNumberText, null, 2)}
-      </div>
-      <div>Data de abertura: {JSON.stringify(openDateText, null, 2)}</div>
-      <div>Placa: {JSON.stringify(licensePlateText, null, 2)}</div>
-      <div>finalização: {JSON.stringify(finalizationText, null, 2)}</div>
-      <div>Escopo: {JSON.stringify(csvNameText, null, 2)}</div>
-      <div>Status: {JSON.stringify(status, null, 2)}</div>
+      {isLoading ? (
+        <p>Carregando informações...</p>
+      ) : (
+        <table className="os-table">
+          <thead>
+            <tr>
+              <th>OS</th>
+              <th>Placa</th>
+              <th>Abertura</th>
+              <th>Finalização</th>
+              <th>Escopo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{serviceNumberText}</td>
+              <td>{licensePlateText}</td>
+              <td>{openDateText}</td>
+              <td>{finalizationText}</td>
+              <td>{csvNameText}</td>
+              <td>{status}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
     </>
   );
 }

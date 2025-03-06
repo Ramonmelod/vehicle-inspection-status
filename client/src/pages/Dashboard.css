@@ -1,0 +1,24 @@
+.title {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.os-table th,
+.os-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.os-table th {
+  background-color: #d47777;
+  font-weight: bold;
+  color: white;
+}
+
+.os-table td {
+  max-width: 200px;
+}
