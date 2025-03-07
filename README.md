@@ -15,11 +15,37 @@
 
 - The **Vehicle Inspection Status** project aims to provide a platform to manage and monitor the status of vehicle inspections
 
-## Endpoints
+## Get started
+
+1. First run the `npm install` to download all the **server** and **client** depedencies:
+
+```sh
+npm install
+```
+
+2. Run the command below to start the container:
+
+```sh
+npm run services:up
+```
+
+3. Run the command below to start the the server:
+
+```sh
+npm run dev
+```
+
+4. Run the command below to start the REACT and in order to have the frontend dashboard:
+
+```sh
+npm start
+```
+
+## Server Endpoint
 
 ## GET
 
-**Requisição**
+**Requisition**
 
 `/api/v1/os_status`
 
@@ -28,24 +54,14 @@ curl -s http://localhost:8080/api/v1/os_status | python3 -m json.tool --no-ensur
 
 ```
 
-## Get started
+obs.: In case you have not python installed in your machine you can run only: **curl -s http://localhost:8080/api/v1/os_status**
 
-- First run the npm install to download all the depedencies:
+## Client Endpoint
 
-```sh
-npm install
+- To access the client interface, open a browser and go to:
+
 ```
-
-- Run the command below to start the container:
-
-```sh
-npm run services:up
-```
-
-- The run the command below to start the the server:
-
-```sh
-npm run dev
+ http://localhost:3000
 ```
 
 ## Direct access to the database container
@@ -57,9 +73,9 @@ npm run dev
 
 ```
 
-obs.: For using the sqlcm you need to install the `mssql-tools`
+obs.: For using the sqlcmd you need to install the `mssql-tools`
 
-- You can access the docker container withe the command below:
+- You can access the docker container with the command below:
 
 ```sh
 docker exec -it mssql_server bin/bash
