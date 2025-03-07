@@ -9,6 +9,7 @@ async function fetchApi(key) {
 
 export default function OsInformations() {
   const { data, isLoading } = useSWR("/api/v1/os_status", fetchApi);
+  const padding = "--";
 
   return (
     <>
@@ -29,12 +30,12 @@ export default function OsInformations() {
           <tbody>
             {data.map((os, index) => (
               <tr key={index}>
-                <td>{os.serviceNumber}</td>
-                <td>{os.licensePlate}</td>
-                <td>{os.openDate}</td>
-                <td>{os.finalization}</td>
-                <td>{os.TipoCsvSerproNome}</td>
-                <td>{os.status}</td>
+                <td>{os.serviceNumber || padding}</td>
+                <td>{os.licensePlate || padding}</td>
+                <td>{os.openDate || padding}</td>
+                <td>{os.finalization || padding}</td>
+                <td>{os.TipoCsvSerproNome || padding}</td>
+                <td>{os.status || padding}</td>
               </tr>
             ))}
           </tbody>
