@@ -12,10 +12,9 @@
     "services:up": "docker compose -f server/infra/compose.yaml up -d",
     "services:stop": "docker compose -f server/infra/compose.yaml stop",
     "services:down": "docker compose -f server/infra/compose.yaml down",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test": "npm --prefix server test",
+    "test:watch": "npm --prefix server run test:watch"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Ramon Melo dos Santos"
 }
