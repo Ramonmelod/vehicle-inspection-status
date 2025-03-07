@@ -1,30 +1,21 @@
 {
-  "type": "commonjs",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "mssql": "^11.0.1"
-  },
-  "name": "status-service-api",
+  "name": "vehicle-inspection-status",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "<div> <img src=\"https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png\" alt=\"express logo\" width=\"100\" height=\"auto\"> <img src=\"https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/mssql.png\" alt=\"SQL SERVER logo\" width=\"100\" height=\"auto\"> <img src=\"https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png\" alt=\"docker logo\" width=\"100\" height=\"auto\">",
+  "main": "server/server.js",
   "scripts": {
     "dev": "node server/server.js",
     "start": "npm --prefix client run start",
+    "install-server": "npm --prefix server install",
     "install-client": "npm --prefix client install",
-    "install": "npm run install-client",
-    "services:up": "docker compose -f infra/compose.yaml up -d",
-    "services:stop": "docker compose -f infra/compose.yaml stop",
-    "services:down": "docker compose -f infra/compose.yaml down",
+    "install": "npm run install-server && npm run install-client",
+    "services:up": "docker compose -f server/infra/compose.yaml up -d",
+    "services:stop": "docker compose -f server/infra/compose.yaml stop",
+    "services:down": "docker compose -f server/infra/compose.yaml down",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "jest": "^29.7.0"
-  }
+  "license": "ISC"
 }

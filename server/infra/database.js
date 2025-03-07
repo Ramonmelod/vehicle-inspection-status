@@ -1,7 +1,7 @@
 const sql = require("mssql");
 
 const dotenv = require("dotenv");
-dotenv.config({ path: ".env.development" }); // here is used the .env.development file, but the production shel use the .env file
+dotenv.config({ path: "./server/.env.development" }); // here is used the .env.development file, but the production shel use the .env file
 
 const sqlConfig = {
   user: process.env.SQLSERVERUSER,
