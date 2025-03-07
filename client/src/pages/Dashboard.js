@@ -10,7 +10,7 @@ const Dashboard = () => {
         <span style={{ color: "#b21418" }}>Teresina</span>
       </h1>
       <img
-        src="logo-grupo-seta-web.jpg"
+        src="logo-grupo-seta.jpg"
         alt="Logo"
         width="200"
         style={{ position: "relative", left: "15%", top: "15%" }}
