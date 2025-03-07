@@ -23,7 +23,7 @@
 npm install
 ```
 
-2. Run the command below to start the container:
+2. Run the command below to start the `sql server` docker container:
 
 ```sh
 npm run services:up
