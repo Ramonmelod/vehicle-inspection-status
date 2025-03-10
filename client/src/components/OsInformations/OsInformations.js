@@ -32,8 +32,18 @@ export default function OsInformations() {
               <tr key={index}>
                 <td>{os.serviceNumber || padding}</td>
                 <td>{os.licensePlate || padding}</td>
-                <td>{os.openDate || padding}</td>
-                <td>{os.finalization || padding}</td>
+                <td>
+                  {(() =>
+                    os.openDate
+                      ? new Date(os.openDate).toLocaleTimeString("pt-BR")
+                      : padding)()}
+                </td>
+                <td>
+                  {(() =>
+                    os.finalization
+                      ? new Date(os.finalization).toLocaleTimeString("pt-BR")
+                      : padding)()}
+                </td>
                 <td>{os.TipoCsvSerproNome || padding}</td>
                 <td>{os.status || padding}</td>
               </tr>
