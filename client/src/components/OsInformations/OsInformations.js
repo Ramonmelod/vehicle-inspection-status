@@ -45,7 +45,21 @@ export default function OsInformations() {
                       : padding)()}
                 </td>
                 <td>{os.TipoCsvSerproNome || padding}</td>
-                <td>{os.status || padding}</td>
+                <td>
+                  {" "}
+                  {(() => {
+                    switch (os.status) {
+                      case 0:
+                        return "Aberto";
+                      case 1:
+                        return "Finalizado";
+                      case 2:
+                        return "Cancelado";
+                      default:
+                        return padding;
+                    }
+                  })()}
+                </td>
               </tr>
             ))}
           </tbody>
