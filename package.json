@@ -15,6 +15,7 @@
     "test": "npm --prefix server test",
     "test:watch": "npm --prefix server run test:watch"
   },
+  "type": "module",
   "keywords": [],
   "author": "Ramon Melo dos Santos"
 }

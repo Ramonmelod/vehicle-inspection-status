@@ -1,4 +1,5 @@
 const sql = require("mssql");
+const { ServiceError } = require("./errors.js");
 
 const dotenv = require("dotenv");
 dotenv.config({ path: "./server/.env.development" }); // here is used the .env.development file, but the production shel use the .env file
@@ -28,6 +29,13 @@ async function database(queryObject) {
     return result;
   } catch (error) {
     console.log(error);
+    const serviceErrorObject = new ServiceError({
+      cause: error,
+      message: "Erro na conexão com o Banco de dados ou na Query",
+    });
+
+    console.log(serviceErrorObject);
+    throw error;
   }
 }
 

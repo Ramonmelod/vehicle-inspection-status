@@ -1,6 +1,7 @@
 const express = require("express");
 const { Router } = require("express");
 const { database } = require("./infra/database.js");
+const { InternalServerError } = require("./infra/errors.js");
 const cors = require("cors"); // cors add to enable crossed requisitions
 const app = express();
 const apiRouter = Router();
@@ -18,24 +19,30 @@ app.get("/", (req, res) => {
 });
 
 apiRouter.get("/", async (req, res) => {
-  const result = await database(queryObject);
-  res.type("text/plain");
+  try {
+    const result = await database(queryObject);
+    res.type("text/plain");
 
-  let data = [];
+    let data = [];
 
-  for (datarow in result.recordset) {
-    data.push({
-      openDate: result.recordset[datarow].aberturadatahora,
-      serviceNumber: result.recordset[datarow].serviconumero,
-      licensePlate: result.recordset[datarow].placa,
+    for (datarow in result?.recordset) {
+      data.push({
+        openDate: result?.recordset[datarow].aberturadatahora, //the ? garanty that recordset will be ignored if it is undefined
+        serviceNumber: result?.recordset[datarow].serviconumero,
+        licensePlate: result?.recordset[datarow].placa,
 
-      finalization: result.recordset[datarow].csvemitidodatahora,
-      TipoCsvSerproNome: result.recordset[datarow].TipoCsvSerproNome,
-      status: result.recordset[datarow].status,
-    });
+        finalization: result?.recordset[datarow].csvemitidodatahora,
+        TipoCsvSerproNome: result?.recordset[datarow].TipoCsvSerproNome,
+        status: result?.recordset[datarow].status,
+      });
+    }
+
+    res.status(200).send(data);
+  } catch (error) {
+    const publicErrorObject = new InternalServerError({ cause: error });
+    console.error(publicErrorObject);
+    res.status(500).json(publicErrorObject);
   }
-
-  res.status(200).send(data);
 });
 app.listen(porta, localHost, () => {
   console.log("Servidor Rodando!");
