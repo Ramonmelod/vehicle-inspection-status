@@ -5,7 +5,7 @@ const { InternalServerError } = require("./infra/errors.js");
 const cors = require("cors"); // cors add to enable crossed requisitions
 const app = express();
 const apiRouter = Router();
-const porta = 8080;
+const port = 8080;
 const localHost = "localhost";
 
 const queryObject =
@@ -44,6 +44,8 @@ apiRouter.get("/", async (req, res) => {
     res.status(500).json(publicErrorObject);
   }
 });
-app.listen(porta, localHost, () => {
-  console.log("Servidor Rodando!");
+app.listen(port, localHost, () => {
+  console.log(
+    `Server running on port: ${port}. \n\nYou may access it with the command below: \n\ncurl -s http://localhost:8080/api/v1/os_status`
+  );
 });
