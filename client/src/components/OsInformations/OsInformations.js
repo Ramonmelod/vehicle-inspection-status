@@ -14,10 +14,32 @@ async function fetchApi(key) {
 export default function OsInformations() {
   const { data, isLoading } = useSWR("/api/v1/os_status", fetchApi);
   const padding = "--";
-  if (isLoading) return <p>Carregando informações...</p>;
+  if (isLoading)
+    return (
+      <p
+        style={{
+          position: "relative",
+          textAlign: "center",
+          fontWeight: "bold",
+          color: "#b21418",
+          top: "15vh",
+        }}
+      >
+        Carregando informações...
+      </p>
+    );
   if (!data)
     return (
-      <p style={{ textAlign: "center", fontWeight: "bold", color: "#b21418" }}>
+      <p
+        style={{
+          position: "relative",
+          textAlign: "center",
+          fontWeight: "bold",
+          color: "#b21418",
+          top: "25vh",
+          left: "0%",
+        }}
+      >
         Serviço indisponível. Tente novamente mais tarde.
       </p>
     );
